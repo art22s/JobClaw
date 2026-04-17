@@ -1,0 +1,43 @@
+name: 📋 New Company / ATS Source
+description: Request adding a new company or ATS platform to the pipeline
+labels: ["enhancement", "new-source"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Want JobClaw to fetch jobs from a company or ATS platform we don't cover yet? Let us know!
+  - type: input
+    id: company
+    attributes:
+      label: Company name
+    validations:
+      required: true
+  - type: input
+    id: careers_url
+    attributes:
+      label: Careers page URL
+      description: Link to the company's job listings page
+    validations:
+      required: true
+  - type: dropdown
+    id: ats
+    attributes:
+      label: ATS Platform (if known)
+      description: Which applicant tracking system does this company use?
+      options:
+        - Greenhouse
+        - Lever
+        - Workday
+        - Ashby
+        - iCIMS
+        - Jobvite
+        - Not sure / Other
+    validations:
+      required: true
+  - type: textarea
+    id: notes
+    attributes:
+      label: Additional notes
+      description: Anything else helpful (API patterns, slug names, etc.)
+    validations:
+      required: false

@@ -1,0 +1,4 @@
+# Tell GitHub Linguist to ignore these (not "real" source code)
+reports/** linguist-generated
+reports/** -linguist-detectable
+docs/screenshot.png linguist-generated
