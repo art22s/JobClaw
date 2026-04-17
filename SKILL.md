@@ -95,7 +95,7 @@ If the user already has a profile, skip to Step 2.
 
 ```bash
 cd {project_dir}
-python3 scripts/fetch_greenhouse.py --output /tmp/js_greenhouse_raw.json
+python3 scripts/fetch_greenhouse.py --output data/greenhouse_raw.json
 ```
 
 Hits 100+ Greenhouse API endpoints in parallel (~5s). Companies include tech, finance, healthcare, and more. See `scripts/fetch_greenhouse.py` → `GREENHOUSE_COMPANIES` for the full list.
@@ -104,7 +104,7 @@ Hits 100+ Greenhouse API endpoints in parallel (~5s). Companies include tech, fi
 
 ```bash
 cd {project_dir}
-python3 scripts/fetch_lever.py --output /tmp/js_lever_raw.json --timeout 30
+python3 scripts/fetch_lever.py --output data/lever_raw.json --timeout 30
 ```
 
 Hits Lever public Postings API for 35+ companies. Full descriptions included. Companies: Spotify, Binance, Plaid, Whoop, Octopus Energy, Dun & Bradstreet, Sword Health, Rover, Outreach, and more.
@@ -115,7 +115,7 @@ Hits Lever public Postings API for 35+ companies. Full descriptions included. Co
 cd {project_dir}
 python3 scripts/fetch_workday.py \
   --profile profiles/{name}.md \
-  --output /tmp/js_workday_raw.json
+  --output data/workday_raw.json
 ```
 
 Hits 26+ verified Workday portals. Uses Playwright for rendering dynamic pages. Companies: NVIDIA, Salesforce, Adobe, Cisco, Intel, Visa, Mastercard, PayPal, Fidelity, Target, Walmart, Nike, Disney, Comcast, and more.
@@ -132,7 +132,7 @@ Use `web_search` to find jobs on Ashby, Wellfound, Workable, and Remotive. For e
 
 Collect results as JSON objects: `{"title", "url", "company", "location", "date_posted": "", "source": "websearch"}`
 
-Save to `/tmp/js_websearch_raw.json` using the `write` tool (not exec).
+Save to `data/websearch_raw.json` using the `write` tool (not exec).
 
 **Note**: Web search results without dates get dropped by the 7-day filter — this is expected. This step mainly discovers companies not in the main API lists.
 
@@ -141,14 +141,14 @@ Save to `/tmp/js_websearch_raw.json` using the `write` tool (not exec).
 ```bash
 cd {project_dir}
 python3 scripts/filter_jobs.py \
-  --greenhouse /tmp/js_greenhouse_raw.json \
-  --lever /tmp/js_lever_raw.json \
-  --workday /tmp/js_workday_raw.json \
-  --websearch /tmp/js_websearch_raw.json \
+  --greenhouse data/greenhouse_raw.json \
+  --lever data/lever_raw.json \
+  --workday data/workday_raw.json \
+  --websearch data/websearch_raw.json \
   --profile profiles/{name}.md \
   --max-days 7 \
   --cache {project_dir}/workday_cache.json \
-  --output /tmp/js_filtered.json
+  --output data/filtered.json
 ```
 
 Filtering logic:
@@ -170,7 +170,7 @@ Filtering logic:
 ```bash
 cd {project_dir}
 python3 scripts/generate_report.py \
-  --input /tmp/js_filtered.json \
+  --input data/filtered.json \
   --profile profiles/{name}.md \
   --output reports/YYYY-MM-DD-{name}.html \
   --print-summary
@@ -180,11 +180,11 @@ Creates an HTML report grouped by tier (⭐⭐⭐ / ⭐⭐ / ⭐) with clickable
 
 ## Step 8: Sync to Google Sheet
 
-If `~/.config/job-search-3/config.json` exists with a `sheet_url`:
+If `config/gog_token.json` exists:
 
 ```bash
 cd {project_dir}
-python3 scripts/update_sheet.py --input /tmp/js_filtered.json
+python3 scripts/update_sheet.py --input data/filtered.json
 ```
 
 Adds new jobs, removes rows older than 7 days. If no sheet configured, tell user to set up via `scripts/JobSearch.gs`.
@@ -194,12 +194,11 @@ Adds new jobs, removes rows older than 7 days. If no sheet configured, tell user
 Only if user asks, or if no Google Sheet is configured:
 
 ```bash
-cd ~/.openclaw/workspace/skills/imap-smtp-email
-node scripts/smtp.js send \
+# Send using your preferred email method, or use the built-in OpenClaw email skill
   --to "{email}" \
   --cc "{cc_email}" \
   --subject "🦞 Job Hunt Results — $(date +%Y-%m-%d)" \
-  --html-file "{project_dir}/reports/YYYY-MM-DD-{name}.html"
+  --html-file "reports/$(date +%Y-%m-%d)-{name}.html"
 ```
 
 ## Quick Run (All Steps)
@@ -220,6 +219,6 @@ python3 job_search.py report --profile profiles/{name}.md
 ## Setup
 
 1. Install dependencies: `pip install playwright pymupdf && playwright install chromium`
-2. (Optional) Google Sheet sync: `gog auth login && gog auth tokens export --out ~/.config/job-search-3/gog_token.json`
+2. (Optional) Google Sheet sync: `gog auth login && gog auth tokens export --out config/gog_token.json`
 3. Create profile from resume (Step 1) or copy `profiles/example.md`
 4. Run the pipeline

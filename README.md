@@ -76,7 +76,7 @@ python3 job_search.py report --profile profiles/yourname.md
 
 ```bash
 gog auth login
-gog auth tokens export --out ~/.config/job-search-3/gog_token.json
+gog auth tokens export --out config/gog_token.json
 ```
 
 ---
@@ -151,7 +151,7 @@ See `profiles/example.md` for a complete example.
 ## Architecture
 
 ```
-job-search/
+JobClaw/
 ├── SKILL.md               # OpenClaw skill instructions
 ├── job_search.py          # CLI entry point
 ├── scripts/
