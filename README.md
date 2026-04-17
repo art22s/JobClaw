@@ -1,6 +1,6 @@
 # JobClaw — Multi-Source Job Pipeline
 
-Automated job search pipeline that aggregates listings from Greenhouse, Lever, and Workday APIs, filters them against a candidate profile, and outputs ranked HTML reports + Google Sheet sync.
+🦞 **AI-powered job search pipeline for agents & humans** — Greenhouse, Lever, Workday APIs, visa sponsorship filtering, tiered reports. Works with OpenClaw, Claude Code, or standalone CLI.
 
 **No LLM black boxes.** All filtering is deterministic Python — keyword matching, location rules, experience thresholds, and sponsorship exclusion logic.
 
