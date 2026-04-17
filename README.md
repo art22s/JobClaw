@@ -1,4 +1,4 @@
-# Job Search — Multi-Source Job Pipeline
+# JobClaw — Multi-Source Job Pipeline
 
 Automated job search pipeline that aggregates listings from Greenhouse, Lever, and Workday APIs, filters them against a candidate profile, and outputs ranked HTML reports + Google Sheet sync.
 
@@ -24,8 +24,8 @@ Automated job search pipeline that aggregates listings from Greenhouse, Lever, a
 ### Install
 
 ```bash
-git clone https://github.com/art22s/job-search.git
-cd job-search
+git clone https://github.com/art22s/JobClaw.git
+cd JobClaw
 pip install playwright pymupdf
 playwright install chromium
 ```
@@ -99,7 +99,7 @@ To install as a skill, place this directory in your OpenClaw workspace's `skills
 Profiles are Markdown files with structured sections:
 
 ```markdown
-# Your Name - Job Search Profile
+# Your Name - JobClaw Profile
 
 ## Contact
 - **Name:** Jane Doe

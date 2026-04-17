@@ -1,9 +1,9 @@
 ---
-name: job-search
+name: JobClaw
 description: Automated job search pipeline — create candidate profiles from PDF resumes, aggregate jobs from Greenhouse/Lever/Workday APIs, filter by title/location/sponsorship, generate tiered HTML reports, and sync to Google Sheets. Use when a user wants to search for jobs, run a job search, create a candidate profile from a resume, find open positions, scan job boards, or run the job hunt pipeline for someone.
 ---
 
-# Job Search Pipeline
+# JobClaw Pipeline
 
 Automated job search: profile creation → multi-source aggregation → filtering → reports → sheet sync.
 
@@ -21,7 +21,7 @@ If the user provides a PDF resume (or asks to set up a new candidate), generate 
 3. **Generate the profile** — write a structured markdown file to `profiles/{firstname_lastname}.md` using this template:
 
 ```markdown
-# {Full Name} - Job Search Profile
+# {Full Name} - JobClaw Profile
 
 ## Contact
 - **Name:** ...
