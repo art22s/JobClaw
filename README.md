@@ -13,7 +13,7 @@
 - ✅ **Profile-driven filtering**: title tiers, experience caps, location rules, visa/sponsorship exclusions
 - ✅ **ITAR/security clearance exclusion**: skips jobs requiring U.S. citizenship or clearance
 - ✅ **HTML reports** — tiered (⭐⭐⭐ / ⭐⭐ / ⭐), email-ready
-- ✅ **Google Sheet sync** via gog CLI (optional)
+- ✅ **Google Sheet sync** via [gog CLI](https://github.com/steipete/gogcli) (optional)
 - ✅ **Workday URL caching** for incremental rendering (saves ~9 min on re-runs)
 - ✅ **Parallel fetching** — ThreadPoolExecutor for API calls, async Playwright for Workday
 
@@ -193,7 +193,7 @@ JobClaw/
 
 - Python 3.10+
 - **For Workday rendering**: Playwright + Chromium (`pip install playwright && playwright install chromium`)
-- **For Google Sheet sync**: gog CLI with authenticated Google account
+- **For Google Sheet sync**: [gog CLI](https://github.com/steipete/gogcli) with authenticated Google account
 
 ## License
 

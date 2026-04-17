@@ -180,7 +180,7 @@ Creates an HTML report grouped by tier (⭐⭐⭐ / ⭐⭐ / ⭐) with clickable
 
 ## Step 8: Sync to Google Sheet
 
-Requires a Google Sheet ID and gog OAuth token.
+Requires a Google Sheet ID and [gog CLI](https://github.com/steipete/gogcli) OAuth token.
 
 **Configure sheet ID** (one of):
 - `export JOBCLAW_SHEET_ID=your-sheet-id`
