@@ -6,6 +6,8 @@ Automated job search pipeline that aggregates listings from Greenhouse, Lever, a
 
 **Two ways to use:** as a standalone CLI, or as an OpenClaw skill (see `SKILL.md`).
 
+![JobClaw Report Screenshot](docs/screenshot.png)
+
 ## Features
 
 - ✅ **3 ATS sources**: Greenhouse (100+ companies), Lever (80+ companies), Workday (50+ companies)
